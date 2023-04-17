@@ -31,6 +31,32 @@ public:
         this->head = nullptr;
     }
 
+    void deletePokemonWithUid(int uid){
+
+        if(head == nullptr){
+            std::cout << "list empty nothing exists here";
+            return;
+        }
+
+        std::shared_ptr<node> tmp = head;
+        std::shared_ptr<node> actual = head->proximo;
+
+        while (actual != nullptr){
+
+            if(actual->p_object->uid == uid){
+
+                tmp->proximo = actual->proximo;
+                actual = nullptr;
+                return;
+            }
+
+            tmp = actual;
+            actual = actual->proximo;
+
+        }
+
+    }
+
     void deletedOnTail(){
 
         if(head == nullptr){
@@ -175,7 +201,7 @@ int main() {
     l.insertNodeOnHead(pok2);
     l.insertNodeOnTail("charmander",1296);
     l.deletedOnHead();
-    l.deletedOnTail();
+    l.deletePokemonWithUid(1296);
     l.printLinkedList();
     return 0;
 }
